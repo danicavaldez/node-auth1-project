@@ -1,4 +1,4 @@
-const db = require('../database/db-config.js')
+const db = require("../database/db-config.js");
 
 module.exports = {
   add,
@@ -8,28 +8,27 @@ module.exports = {
 };
 
 function find() {
-  return db('users')
-    .select('id', 'username', 'password')
+  return db("users").select("id", "username", "password");
 }
 
 function findBy(user) {
-  return db ('users')
-    .select('id', 'username', 'password')
-    .where(user)
+  return db("users")
+    .select("id", "username", "password")
+    .where(user);
 }
 
 function add(user) {
-  return db('users')
-    .insert(user, 'id')
+  return db("users")
+    .insert(user, "id")
     .then(ids => {
       const [id] = ids;
-      return findById(id)
-    })
+      return findById(id);
+    });
 }
 
 function findById(id) {
-  return db('users')
-    .select('id', 'username')
+  return db("users")
+    .select("id", "username")
     .where({ id })
-    .first()
+    .first();
 }
